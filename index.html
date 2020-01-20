@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Chat Bot</title>
+<meta charset="utf-8"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="index.css"/>
+<script src="Javascript/script.js"></script>
+</head>
+<body>
+<div id="chat_container">
+    <div class="banner">
+    </div>
+    <div id="chat_log">
+    </div>
+    <div id="chat_input_container">
+        <div class="autocomplete" style="width:92%">
+            <input id="chat_input" onkeydown="javascript:check" placeholder="Ask me anything......." />
+        </div>
+        <button id="button" onclick="myFunction()">Speak</button>
+    </div>
+</div>
+</body>
+</html>
