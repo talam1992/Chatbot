@@ -6,7 +6,7 @@ import time
 import ast
 import config
 import re
-import chatbot
+import parrotlet
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -62,7 +62,7 @@ def twitter(message):
         return reply
 
     else:
-        display = chatbot.google_search(message)
+        display = parrotlet.google_search(message)
         reply = "Googling . . ."
         return reply
 

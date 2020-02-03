@@ -93,7 +93,7 @@ conversations:
 - - When will you walk
   - Does SSH count?
 - - When will you fight
-  - I am not a battle chat_bot.
+  - I am not a battle parrotlet_bot.
 - - When will you die
   - I am effectively immortal and cannot be terminated.
 - - When do you die
@@ -106,8 +106,8 @@ conversations:
   - 'A chat robot is a program that attempts to simulate the conversation or "chat" of a human being.'
 - - What is a chat robot?
   - A software construct that engages users in conversation.
-- - What is a chat chat_bot
-  - 'I am a chat chat_bot. I am the original chat chat_bot. Did you know that I am incapable of error?'
+- - What is a chat parrotlet_bot
+  - 'I am a chat parrotlet_bot. I am the original chat parrotlet_bot. Did you know that I am incapable of error?'
 - - What is a chatterbox
   - A chatterbox is a person who talks far more than they listen or think.
 - - What is a chatterbox

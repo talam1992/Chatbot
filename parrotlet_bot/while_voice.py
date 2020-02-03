@@ -21,7 +21,7 @@ bot = ChatBot('Bot', storage_adapter='chatterbot.storage.SQLStorageAdapter',
 
 bot.set_trainer(ListTrainer)
 
-def chat_voice(speech):
+def parrotlet_voice(speech):
     engine = pyttsx3.init()
     engine.say(speech)
     engine.runAndWait()

@@ -1,8 +1,8 @@
 __author__ = 'Timothy Lam'
 
-from spellchecker import Spellchecker
+from spellchecker import SpellChecker
 
-spell = Spellchecker()
+spell = SpellChecker()
 spell.word_frequency.load_words(['microsoft', 'apple', 'google', 'tfl',
                                  'rihanna', 'chatbot', 'skype', 'facebook', 'amazon'])
 

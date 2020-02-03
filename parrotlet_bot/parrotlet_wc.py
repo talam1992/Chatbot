@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image
 import wikipedia
 from wordcloud import WordCloud, STOPWORDS
-from chat_bot import chat_dict
+from parrotlet_bot import parrotlet_dict
 import time
 import os
 import requests
@@ -77,7 +77,7 @@ def word_cloud_syn_ant(query):
         os.remove(path)
     except Exception as e:
         pass
-    text = chat_dict.ant_syn(query)
+    text = parrotlet_dict.ant_syn(query)
     # generate wordcloud
     create_wordcloud(text)
 

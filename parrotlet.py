@@ -6,8 +6,9 @@ import requests
 import wikipedia
 import pyttsx3
 from selenium import webdriver
-from chat_bot import chat_amazon, chat_dict, chat_email, chat_maths as calc, chat_news, chat_one_char, \
-     chat_speak, chat_tfl, chat_time
+from parrotlet_bot import parrotlet_amazon, parrotlet_dict, parrotlet_email, parrotlet_football, parrotlet_job, parrotlet_man,\
+    parrotlet_maths as calc, parrotlet_news, parrotlet_one_char, parrotlet_speak,  parrotlet_spell, parrotlet_skype, parrotlet_tfl, \
+    parrotlet_time, parrotlet_tweet
 import config
 import random as r
 
@@ -37,7 +38,7 @@ def email_thread(message):
         address = email['address']
         subject = email['subject']
         email = {'msg' : '', 'address': '', 'subject': '', 'run': 0}
-        return chat_email.send_email(subject=subject, msg=msg, _send_email=address)
+        return parrotlet_email.send_email(subject=subject, msg=msg, _send_email=address)
 
     elif email['run'] == 3:
         email['subject'] = message
@@ -47,17 +48,17 @@ def email_thread(message):
         return run_email[1]
 
     elif email['run'] == 2:
-        if chat_email.check(message) == 'valid':
+        if parrotlet_email.check(message) == 'valid':
             email['address'] = message
             return run_email[2]
-        elif message in chat_email.contact:
-            email['address'] = chat_email.contact[message]
+        elif message in parrotlet_email.contact:
+            email['address'] = parrotlet_email.contact[message]
             return run_email[2]
         else:
             email['run'] -= 1
             return f"{message} is an invalid email, please give a valid mail"
 
-def chat_voice(speech):
+def parrotlet_voice(speech):
     engine = pyttsx3.init()
     engine.say(speech)
     engine.runAndWait()
@@ -112,111 +113,117 @@ def stop_words():
     response = ["okay", "ok", "alright", "great", "Thought as much", "Good"]
     return response[r.randrange(len(response))]
 
-def chat(message):
-    if (message[:len("dictionary translate")] != "dictionary translate") and (chat_dict.dectec_lang(message) != 'en'):
-        config.lang_code = chat_dict.detect_lang(message)
-        message = chat_dict.translate_sentence_code(query=message, lang='en')['display']
+def parrotlet(message):
+    if (message[:len("dictionary translate")] != "dictionary translate") and (parrotlet_dict.detect_lang(message) != 'en'):
+        config.lang_code = parrotlet_dict.detect_lang(message)
+        message = parrotlet_dict.translate_sentence_code(query=message, lang='en')['display']
 
         # Formatting message input
     if email['run'] == 0:
         if message[:3] == 'tfl':
             message = format_string (message).lower ().strip ()
         elif message[:12] == 'show picture':
-            return chat_skype.show_picture (message[13:].strip ())
+            return parrotlet_skype.show_picture (message[13:].strip ())
         elif message[:len ('birthday for')] == 'birthday for':
-            return chat_skype.birthday (message[len ('birthday for') + 1:].strip ())
+            return parrotlet_skype.birthday (message[len ('birthday for') + 1:].strip ())
         elif message[:5] == 'skype':
-            return chat_skype.skype (message[6:])
+            return parrotlet_skype.skype (message[6:])
         elif message[:len ('amazon')] == 'amazon':
-            return chat_amazon.selector (format_string (message).lower ().strip ())
+            return parrotlet_amazon.selector (format_string (message).lower ().strip ())
         elif message[:len ('dictionary')] == 'dictionary':
-            return chat_dict.selector (message)
+            return parrotlet_dict.selector (message)
+        elif message[:len('youtube')] == 'youtube':
+            return parrotlet_youtube.search_youtube(message[len("youtube")+1:].strip())
+        elif message[:len('job search')] == 'job search':
+            return parrotlet_job.selector(message)
+        elif message[:len('man')] == 'man':
+            return parrotlet_man.selector(message)
         else:
-            message = chat_spell.auto_correct (format_string (message).lower ().strip ())
+            message = parrotlet_spell.auto_correct (format_string (message).lower ().strip ())
     else:
-        message = chat_spell.auto_correct (message.lower ().strip ())
+        message = parrotlet_spell.auto_correct (message.lower ().strip ())
 
         # Main Decision Thread
     if email['run'] != 0:
         email['run'] += 1
         return email_thread (message)
 
-    elif chat_football.football_key['status'] == 1:
-        return chat_football.football_switch (message)
+    elif parrotlet_football.football_key['status'] == 1:
+        return parrotlet_football.football_switch (message)
 
     elif {"send", "email"} - set (message.split ()) == set ():
         email['run'] += 1
         return email_thread (message)
 
     elif (len (message) == 1) or message.isdigit ():
-        return chat_one_char.main (message)
+        return parrotlet_one_char.main (message)
 
     elif ("twitter" in message) or ("tweet" in message):
-        return chat_tweet.twitter (message)
+        return parrotlet_tweet.twitter (message)
 
     elif message in break_words:
         reply = stop_words ()
         if config.lang_code != 'en':
-            reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+            reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
             config.lang_code = 'en'
         return reply
 
     elif message == 'why':
         reply = "Sorry, I cant tell you. Its a secret"
         if config.lang_code != 'en':
-            reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+            reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
             config.lang_code = 'en'
         return reply
 
     elif message == 'what is your name':
         reply = "My name is Chatbot"
         if config.lang_code != 'en':
-            reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+            reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
             config.lang_code = 'en'
         return reply
 
     elif message in _date:
-        reply = chat_time.chat_date ()
+        reply = parrotlet_time.chat_date ()
         return reply
 
     elif message in _time:
-        reply = chat_time.chat_time()
+        reply = parrotlet_time.chat_time()
         return reply
 
     elif message[:len ('word cloud')] == 'word cloud':
-        return chat_wc.selector (message)
+        return parrotlet_wc.selector (message)
 
     elif message[0:7] == 'what is':
         try:
             reply = wikipedia.summary (message.strip ()[7:], sentences=1)
             if config.lang_code != 'en':
-                reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+                reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
                 config.lang_code = 'en'
             return reply
 
         except:
             reply = "{}? hmm.. I know what it is but I can not tell you".format (message.strip ()[7:])
             if config.lang_code != 'en':
-                reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+                reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
                 config.lang_code = 'en'
             return reply
 
     elif {"bbc", "news"} - set (message.split ()) == set ():
-        reply = chat_news.bbc ()
+        reply = parrotlet_news.bbc ()
         return reply
 
     elif message == 'weather forecast today':
         reply = weather ('london,uk')
         if config.lang_code != 'en':
-            reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+            reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
             config.lang_code = 'en'
         return reply
 
     elif "facebook" in message:
-        return chat_facebook.fb (message)
+        return parrotlet_facebook.fb (message)
 
     elif message[:8] == 'football':
-        reply = chat_football.football (message)
+        reply = parrotlet_football.football (message)
         return reply
 
     elif message[:9] == 'calculate':
@@ -229,17 +236,17 @@ def chat(message):
         display = google_search (search)
         reply = "Googling . . ."
         if config.lang_code != 'en':
-            reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+            reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
             config.lang_code = 'en'
         return reply
 
     elif message[:3] == 'tfl':
-        return chat_tfl.tfl (message)
+        return parrotlet_tfl.tfl (message)
 
     elif message[0:16] == 'weather forecast':
         reply = weather (message.strip ()[16:].strip ())
         if config.lang_code != 'en':
-            reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+            reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
             config.lang_code = 'en'
         return reply
 
@@ -250,7 +257,7 @@ def chat(message):
         play_song (message.strip ()[5:])
         reply = critic[r.randrange (len (critic))]
         if config.lang_code != 'en':
-            reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+            reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
             config.lang_code = 'en'
         return reply
 
@@ -268,7 +275,7 @@ def chat(message):
         else:
             pass
         if config.lang_code != 'en':
-            reply = chat_dict.translate_sentence_code (reply, config.lang_code)
+            reply = parrotlet_dict.translate_sentence_code (reply, config.lang_code)
             config.lang_code = 'en'
         return reply
 
@@ -285,13 +292,13 @@ def get_response(usrText):
     bot.set_trainer(ListTrainer)
     while True:
         if  usrText.strip() == 'click':
-            text = chat_speak.speech_recog()
+            text = parrotlet_speak.speech_recog()
             print(f'speech: {text.strip()}')
             if text == 'sorry could not recognize your voice':
                 reply = str(text)
                 return reply
             else:
-                result = chat(text.strip())
+                result = parrotlet(text.strip())
                 result = f"{text};{result}"
                 reply = str(result)
                 return reply
