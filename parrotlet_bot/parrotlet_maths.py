@@ -86,3 +86,8 @@ def calculate(string):
             return string + ' = ' + str(result)
     except Exception as e:
         return response[r.randrange(len(response))]
+
+#print(calculate("10 + 10 * 50"))
+
+# http://products.wolframalpha.com/docs/WolframAlpha-API-Reference.pdf
+# http://developer.wolframalpha.com/portal/myapps/index.html

@@ -1,4 +1,7 @@
-    var ws = new WebSocket("ws://localhost:8000");
+var ws = new WebSocket("ws://localhost:8000");
+	var store = [''];
+	var s_g = -2;
+	document.getElementById("chat_input").onkeydown = check;
     // Close socket when window closes
     $(window).on('beforeunload', function(){
        ws.close();
@@ -8,7 +11,20 @@
     }
     ws.onmessage = function(event)  {
         var message_received = event.data;
-        chat_add_message(message_received, false);
+
+		if (message_received.indexOf(';') >=0) {
+		   var speak = message_received.split(';')[0];
+		   var msg = message_received.split(';')[1];
+		   //console.log("speak = " + speak);
+		   //console.log("msg = " + msg);
+		   chat_add_message(speak, true);
+		   chat_add_message(msg, false);
+
+		}
+
+		else {
+		   chat_add_message(message_received, false);
+		}
     };
     // Add a message to the chat history
     function chat_add_message(message, isUser) {
@@ -39,11 +55,13 @@
              var message = $(this).val();
              $(this).val("");
              chat_add_message(message, true);
+			 store.push(message);
+			 s_g = -2;
              ws.send(message);
           }
        });
     });
-        function myFunction() {
+    function myFunction() {
       ws.send("click");
     }
     function check(e) {
@@ -70,4 +88,7 @@
 
         }
 
+    }
+    function man_complete(word){
+        document.getElementById("chat_input").value = word;
     }

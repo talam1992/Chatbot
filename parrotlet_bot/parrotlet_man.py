@@ -1,3 +1,5 @@
+__author__ = 'Timothy Lam'
+
 def selector(query):
     if query in man_dict:
         return man_dict[query]()
@@ -75,8 +77,8 @@ def man_tfl():
                         "
     func = ["tfl tube service report",
             "tfl journey duration from <b>se1 5hp</b> to <b>se18 3px</b>",
-            "tfl live arrivals for <b>53</b> at <b>dunton road</b>",
-            "tfl live arrivals for <b>northern</b> at <b>bank underground station</b>"]
+            "tfl live arrivals for <b>Bus No.</b> at <b>Bus Stop Road</b>",
+            "tfl live arrivals for <b>line</b> at <b>station</b>"]
     for i in func:
         j = i.replace('<b>', '[').replace('</b>', ']')
         display += f"<tr>\
@@ -252,7 +254,7 @@ def man_weather():
                             <th>Weather Usage</th>\
                         </tr>\
                         "
-    func = ("weather forecast today", "weather forecast <b>Lagos Nigeria</b>")
+    func = ("weather forecast today", "weather forecast <b>London UK</b>")
     for i in func:
         j = i.replace('<b>', '[').replace('</b>', ']')
         display += f"<tr>\
@@ -290,8 +292,8 @@ def man_amazon():
                         "
     func = ["amazon least price for <b>item_name</b>",
             "amazon max price for <b>item_name</b>",
-            "amazon sort price for <b>speakers</b> at <b>11</b>",
-            "amazon sort rating for <b>speakers</b> at <b>4.5</b>"
+            "amazon sort price for <b>item</b> at <b>price</b>",
+            "amazon sort rating for <b>item</b> at <b>rating</b>"
             ]
     for i in func:
         j = i.replace('<b>', '[').replace('</b>', ']')
@@ -374,6 +376,6 @@ man_dict = {'man help': man_help, 'man maths': man_maths, 'man twitter': man_twi
             'man news': man_news, 'man email': man_email, 'man skype': man_skype, 'man facebook': man_facebook,
             'man football': man_football, 'man time': man_time, 'man date': man_date, 'man weather': man_weather,
             'man youtube': man_youtube, 'man google': man_google, 'man wikipedia': man_wiki, 'man wiki': man_wiki,
-            'man amazon': man_amazon, 'man dictionary': man_dictionary,
-            'man word cloud': man_word_cloud, 'man job search': man_job_search}
+            'man amazon': man_amazon, 'man dictionary': man_dictionary, 'man word cloud': man_word_cloud,
+            'man job search': man_job_search}
 

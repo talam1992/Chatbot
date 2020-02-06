@@ -218,7 +218,7 @@ def top_scorers_age_graph(l_code):
     names = []
     scores = []
     width = 0.4
-    path = rf'C:\Users\Timothy Lam\Documents\PycharmProjects\Chatbot\file{l_code}.png'
+    path = rf'C:\Users\emyli\PycharmProjects\Chatbot_Project\file{l_code}.png'
     try:
         os.remove(path)
     except Exception as e:
@@ -246,7 +246,7 @@ def top_scorers_age_graph(l_code):
         plt.xticks(np.arange(min(age) - 1, max(age) + 1, 1))
 
         plt.title(f"{data['competition']['name']} Top Scorers and Their Age")
-        plt.savefig(rf'C:\Users\Timothy Lam\Documents\PycharmProjects\Chatbot\file{l_code}.png')
+        plt.savefig(rf'C:\Users\emyli\PycharmProjects\Chatbot_Project\file{l_code}.png')
         plt.close()
         _name = data['competition']['name']
         picture = f'<img src="file{l_code}.png?{time.time()}" alt="{_name} Top Football scorers graph" width="65%" height="65%">'
@@ -330,7 +330,7 @@ def football(message):
         match_id = message.split()[-1]
         return which_league('ms_key')
     else:
-        return "Sorry, Chatbot cannot help you with that"
+        return "Sorry, Rihanna cannot help you with that"
 
 # football match today
 # football league start

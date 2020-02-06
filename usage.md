@@ -1,6 +1,4 @@
-###@Author: Timothy Lam
-
-# How To Use Chatbot
+# How To Use
 
 ## Maths
 ```
@@ -30,6 +28,7 @@ show my last tweet
 show last twitter status for <user_twitter_id>
 tweet <message>
 search twitter <search_query>
+show twitter hashtags associated with <query>
 ```
 
 ## TFL
@@ -123,8 +122,31 @@ dictionary antonym for <word>
 dictionary translate <sentence> to <language>
 ```
 
+## IoT module
+```
+iot graph from <ip_address>
+iot light off for <ip_address>
+iot light on for <ip_address>
+iot temperature for <ip_address>
+iot cpu for <ip_address>
+iot memory for <ip_address>
+iot humidity for <ip_address>
+```
+
+
 ## word cloud
 ```
 word cloud <word>
 word cloud antonyms and synonyms <word>
+word cloud twitter <word>
+word cloud twitter user <word>
+```
+
+## Job search
+```html
+#"job search average salary for {job} in {place}"
+#"job search min salary for {job} in {place}"
+#"job search max salary for {job} in {place}"
+job search average salary graph for {job}
+
 ```

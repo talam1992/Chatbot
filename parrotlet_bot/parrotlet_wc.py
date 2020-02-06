@@ -1,19 +1,19 @@
 __author__ = 'Timothy Lam'
 
-#Chatbot world cloud
+#Parrotlet world cloud
 import sys
 from os import path
 import numpy as np
 from PIL import Image
 import wikipedia
 from wordcloud import WordCloud, STOPWORDS
-from parrotlet_bot import parrotlet_dict
+from parrotlet_bot import parrotlet_dict, parrotlet_tweet
 import time
 import os
 import requests
 from bs4 import BeautifulSoup
 import config
-
+import random as r
 
 url2 = "https://www.google.com/search?q="
 
@@ -40,6 +40,14 @@ def selector(msg):
     elif msg[:len('word cloud')] == 'word cloud':
         query = msg[len('word cloud')+1:]
         return word_cloud(query)
+    elif msg[:len('word cloud twitter')] == 'word cloud twitter':
+        query = msg[len('word cloud twitter')+1:]
+        return word_cloud_twitter(query)
+    elif msg[:len('word cloud twitter user')] == 'word cloud twitter user':
+        query = msg[len('word cloud twitter user')+1:]
+        return word_cloud_twitter(query, user=1)
+    else:
+        return "Rihanna is not in the mood for Word cloud at the moment"
 
 
 def get_wiki(query):
@@ -53,7 +61,11 @@ def get_wiki(query):
 
 def create_wordcloud(text):
     # create numpy araay for wordcloud mask image
-    mask = np.array(Image.open(path.join(currdir, "cloud.png")))
+    #img_list = ['cloud', 'pic', 'heart', 'house', 'dv']
+    img_list = ['cloud', 'house', 'heart']
+    an = r.randrange(len(img_list))
+    img = img_list[an]
+    mask = np.array(Image.open(path.join(currdir, f"{img}.png")))
 
     # create set of stopwords
     stopwords = set(STOPWORDS)
@@ -88,7 +100,7 @@ def word_cloud_syn_ant(query):
 
 
 def word_cloud(query):
-    path = rf'C:\Users\Timothy Lam\Documents\Pycharm Projects\Chatbot\wc.png'
+    path = rf'C:\Users\emyli\PycharmProjects\Chatbot_Project\wc.png'
     try:
         os.remove(path)
     except Exception as e:
@@ -106,4 +118,25 @@ def word_cloud(query):
 
     return reply
 
-print(word_cloud('hello'))
+
+def word_cloud_twitter(query, user=0):
+    path = rf'C:\Users\Timothy Lam\Documents\Pycharm Projects\Chatbot\wc.png'
+    try:
+        os.remove(path)
+    except Exception as e:
+        pass
+    if user == 1:
+        # makes a word cloud of the twitter profiles of users that are taking about a given topic
+        text = parrotlet_tweet.twitter_search_cloud_user(query)
+    else:
+        text = parrotlet_tweet.twitter_search_cloud(query)
+    create_wordcloud(text)
+
+    reply = {'display': f'<img src="wc.png?{time.time()}" alt="Test image" width="60%" height="60%">',
+             'say': f'find word cloud from twitter for {query}'}
+
+    return reply
+
+
+
+#print(word_cloud('hello'))
