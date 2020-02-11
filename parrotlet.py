@@ -9,7 +9,7 @@ from selenium import webdriver
 from parrotlet_bot import parrotlet_football, parrotlet_speak, parrotlet_tweet, parrotlet_news, parrotlet_skype, parrotlet_one_char, \
     parrotlet_time, parrotlet_maths as calc, parrotlet_email, parrotlet_tfl, parrotlet_spell, parrotlet_facebook, parrotlet_amazon, \
     parrotlet_dict, parrotlet_wc, \
-    parrotlet_man, parrotlet_job, parrotlet_youtube
+    parrotlet_man, parrotlet_job, parrotlet_youtube, parrotlet_google_image
 import config
 import random as r
 
@@ -127,7 +127,7 @@ def stop_words():
     return response[r.randrange(len(response))]
 
 
-def rihanna(message):
+def parrotlet(message):
     if (message[:len("dictionary translate")] != "dictionary translate") and (
             parrotlet_dict.detect_lang(message) != 'en'):
         config.lang_code = parrotlet_dict.detect_lang(message)
@@ -179,6 +179,9 @@ def rihanna(message):
 
     elif message[:len('word cloud')] == 'word cloud':
         return parrotlet_wc.selector(message)
+
+    elif message[:len ('google image')] == 'google image':
+        return parrotlet_google_image.selector (message)
 
     elif ("twitter" in message) or ("tweet" in message):
         return parrotlet_tweet.twitter(message)
@@ -326,20 +329,14 @@ def get_response(usrText):
                 reply = str(text)
                 return reply
             else:
-                result = rihanna(text.strip())
+                result = parrotlet(text.strip())
                 result = f"{text};{result}"
                 reply = str(result)
                 # return str({'user_sent': text, 'reply': result, 'voice_check': 0, 'say': ''})
                 return reply
         elif usrText.strip() != 'Bye':
-            result = rihanna(usrText)
+            result = parrotlet(usrText)
             reply = str(result)
             return reply  # reply should be string else it wont work
         elif usrText.strip() == 'Bye':
             return 'Bye'
-
-# d = google_search("when is the wilder fight date")
-# print('hello')
-# print(rihanna('journey duration from se18 3px to se1 5hp'))
-# print(rihanna("amazon least price for external hard drive 2tb"))
-# print(get_response("jugar drake va mal"))

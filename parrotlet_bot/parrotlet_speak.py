@@ -5,7 +5,7 @@ import pyttsx3
 import config
 
 
-def rihanna_voice(word_speech):
+def parrotlet_voice(word_speech):
     engine = pyttsx3.init()
     engine.say(word_speech)
     engine.runAndWait()
@@ -15,7 +15,7 @@ def speech_recog():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         #print('speak')
-        rihanna_voice("listening")
+        parrotlet_voice("listening")
         #r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
         try:

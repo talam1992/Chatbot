@@ -246,7 +246,7 @@ def top_scorers_age_graph(l_code):
         plt.xticks(np.arange(min(age) - 1, max(age) + 1, 1))
 
         plt.title(f"{data['competition']['name']} Top Scorers and Their Age")
-        plt.savefig(rf'C:\Users\emyli\PycharmProjects\Chatbot_Project\file{l_code}.png')
+        plt.savefig(rf'C:\Users\Timothy Lam\Documents\Pycharm Projects\Chatbot\file{l_code}.png')
         plt.close()
         _name = data['competition']['name']
         picture = f'<img src="file{l_code}.png?{time.time()}" alt="{_name} Top Football scorers graph" width="65%" height="65%">'
@@ -330,14 +330,4 @@ def football(message):
         match_id = message.split()[-1]
         return which_league('ms_key')
     else:
-        return "Sorry, Rihanna cannot help you with that"
-
-# football match today
-# football league start
-# football league status
-# football top scorers
-# football match schedules for match 11
-# print(season_status(7))
-# print(top_scorers(9))
-# print(top_scorers_age_graph(0))
-# test(0)
+        return "Sorry, Parrotlet cannot help you with that"

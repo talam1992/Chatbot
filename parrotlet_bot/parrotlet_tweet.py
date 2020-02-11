@@ -152,7 +152,7 @@ def plot_tweet(tweet_data):     #tweet_data = {tweets: tweet_volume}
         ax.set_title('Global Twitter Trends Plot')
         plt.subplots_adjust(left=0.3)
         #plt.show()
-        plt.savefig(r'C:\Users\emyli\PycharmProjects\Chatbot_Project\tweet.png')
+        plt.savefig(r'C:\Users\Timothy Lam\Documents\Pycharm Projects\Chatbot\tweet.png')
     except Exception as e:
         print(f'error in plot_tweet: {e}')
 

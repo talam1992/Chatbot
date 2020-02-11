@@ -37,7 +37,7 @@ def selector(message):
         job = query[0].strip()
         return average_salary_graph(job)
     else:
-        return "Rihanna is not in the mood to answer this job search related question"
+        return "Parrotlet is not in the mood to answer this job search related question"
 
 
 def go_to(url):
@@ -241,12 +241,12 @@ def salary_plot(cities_min, cities_max, job):
     plt.title(f"Average Annual Salary Range for {job} in UK Cities", fontdict={'weight': 'medium', 'size': 12})
     plt.xticks(rotation=45)
     plt.subplots_adjust(bottom=0.16)
-    plt.savefig(rf'C:\Users\emyli\PycharmProjects\Chatbot_Project\salary.png')
+    plt.savefig(rf'C:\Users\Timothy Lam\Documents\Pycharm Projects\Chatbot\salary.png')
     plt.close()
 
 
 def average_salary_graph_(job):
-    path = rf'C:\Users\emyli\PycharmProjects\Chatbot_Project\salary.png'
+    path = rf'C:\Users\Timothy Lam\Documents\Pycharm Projects\Chatbot\salary.png'
     try:
         os.remove(path)
     except Exception as e:
@@ -279,7 +279,7 @@ def average_salary_graph_(job):
 
 def average_salary_graph(job):
     global thread_result
-    path = rf'C:\Users\emyli\PycharmProjects\Chatbot_Project\salary.png'
+    path = rf'C:\Users\Timothy Lam\Documents\Pycharm Projects\Chatbot\salary.png'
     try:
         os.remove(path)
     except Exception as e:
@@ -310,13 +310,6 @@ def average_salary_graph(job):
 def key_skills(job, place):  # TODO
     # find job key skills
     pass
-
-
-#print(average_salary_graph(job='devops'))
-
-
-
-#print(selector("job search min salary for devops in london"))
 
 
 

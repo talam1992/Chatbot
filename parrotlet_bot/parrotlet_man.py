@@ -254,7 +254,7 @@ def man_weather():
                             <th>Weather Usage</th>\
                         </tr>\
                         "
-    func = ("weather forecast today", "weather forecast <b>London UK</b>")
+    func = ("weather forecast today", "weather forecast <b>Ho Chi Minh City, VN</b>")
     for i in func:
         j = i.replace('<b>', '[').replace('</b>', ']')
         display += f"<tr>\

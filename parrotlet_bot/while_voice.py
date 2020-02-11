@@ -64,7 +64,7 @@ def speech_recog():
 
 def weather(place):
     try:
-        api_address = 'http://api.openweathermap.org/data/2.5/weather?appid=73f448c069df192842fc72a34f8ea837='
+        api_address = 'http://api.openweathermap.org/data/2.5/weather?appid=73f448c069df192842fc72a34f8ea837&q='
         word = place.split(' ')
         if len(word) == 1:
             city = word[0]
@@ -88,7 +88,7 @@ def weather(place):
     return forecast
 
 
-def rihanna_speak():
+def parrotlet_speak():
     while True:
         message = speech_recog()
         if message.strip()[0:7] == 'what is':
@@ -106,75 +106,75 @@ def rihanna_speak():
 
         elif message.strip() == 'weather forecast today':
             reply = weather('london,uk')
-            print('Rihanna :', reply)
-            rihanna_voice(reply)
+            print('Parrotlet :', reply)
+            parrotlet_voice(reply)
         elif message.strip()[0:16] == 'weather forecast':
             reply = weather(message.strip()[16:].strip())
-            print('Rihanna :', reply)
-            rihanna_voice(reply)
+            print('Parrotlet :', reply)
+            parrotlet_voice(reply)
         elif message.strip()[0:4] == 'play':
-            print('Rihanna :', 'Search for {}'.format(message.strip()[5:]))
-            rihanna_voice('Search for {}'.format(message.strip()[5:]))
+            print('Parrotlet :', 'Search for {}'.format(message.strip()[5:]))
+            parrotlet_voice('Search for {}'.format(message.strip()[5:]))
             play_song(message.strip()[5:])
 
         elif message.strip() != 'Bye':
             reply = bot.get_response(message)
-            print('Rihanna :', reply)
+            print('Parrotlet :', reply)
             if str(reply)[:3] == '- -':
-                rihanna_voice(str(reply)[3:])
+                parrotlet_voice(str(reply)[3:])
             elif str(reply)[0] == '-':
-                rihanna_voice(str(reply)[1:])
+                parrotlet_voice(str(reply)[1:])
             else:
-                rihanna_voice(reply)
+                parrotlet_voice(reply)
 
 
-def rihanna():
+def parrotlet():
     while True:
         message = input('{} : '.format(name.capitalize()))
         if message.strip()[0:7] == 'what is':
             try:
                 reply = wikipedia.summary(message.strip()[7:], sentences=1)
-                print('Rihanna :', reply)
-                rihanna_voice(reply)
+                print('Parrotlet :', reply)
+                parrotlet_voice(reply)
             except:
-                print('Rihanna :', '{}? hmm.. I know what it is but I can not tell you'.format(message.strip()[7:]))
-                rihanna_voice("{}? hmm.. I know what it is but I can not tell you".format(message.strip()[7:]))
-        elif message.strip() == 'goodbye Rihanna':
-            print('Rihanna : Bye {}'.format(name))
-            rihanna_voice('Bye {}'.format(name))
+                print('Parrotlet :', '{}? hmm.. I know what it is but I can not tell you'.format(message.strip()[7:]))
+                parrotlet_voice("{}? hmm.. I know what it is but I can not tell you".format(message.strip()[7:]))
+        elif message.strip() == 'goodbye Parrotlet':
+            print('Parrotlet : Bye {}'.format(name))
+            parrotlet_voice('Bye {}'.format(name))
             break
 
         elif message.strip() == 'weather forecast today':
             reply = weather('london,uk')
-            print('Rihanna :', reply)
-            rihanna_voice(reply)
+            print('Parrotlet :', reply)
+            parrotlet_voice(reply)
         elif message.strip()[0:16] == 'weather forecast':
             reply = weather(message.strip()[16:].strip())
-            print('Rihanna :', reply)
-            rihanna_voice(reply)
+            print('Parrotlet :', reply)
+            parrotlet_voice(reply)
 
         elif message.strip()[0:4] == 'play':
-            print('Rihanna :', 'Searching for {}'.format(message.strip()[5:]))
-            rihanna_voice('Searching for {}'.format(message.strip()[5:]))
+            print('Parrotlet :', 'Searching for {}'.format(message.strip()[5:]))
+            parrotlet_voice('Searching for {}'.format(message.strip()[5:]))
             play_song(message.strip()[5:])
 
         elif message.strip() != 'Bye':
             reply = bot.get_response(message)
-            print('Rihanna :', reply)
+            print('Parrotlet :', reply)
             if str(reply)[:3] == '- -':
-                rihanna_voice(str(reply)[3:])
+                parrotlet_voice(str(reply)[3:])
             elif str(reply)[0] == '-':
-                rihanna_voice(str(reply)[1:])
+                parrotlet_voice(str(reply)[1:])
             else:
-                rihanna_voice(reply)
+                parrotlet_voice(reply)
 
 
 def main():
     global name
 
-    name = 'Emeka'
+    name = 'Timothy Lam'
     '''
-    print('Rihanna : What is your name?')
+    print('Parrotlet : What is your name?')
     rihanna_voice("What is your name?")
     while True:
         name = input('You : ')
@@ -188,7 +188,7 @@ def main():
     rihanna_voice("Hello {}!".format(name))
     '''
     print('say \'hello\' to start')
-    rihanna_speak()
+    parrotlet_speak()
 
 
 if __name__ == "__main__":

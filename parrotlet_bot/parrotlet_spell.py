@@ -4,7 +4,7 @@ from spellchecker import SpellChecker
 
 spell = SpellChecker()
 spell.word_frequency.load_words(['microsoft', 'apple', 'google', 'tfl',
-                                 'rihanna', 'chatbot', 'skype', 'facebook', 'amazon'])
+                                 'parrotlet', 'chatbot', 'skype', 'facebook', 'amazon'])
 
 
 def auto_correct(sentence):
@@ -20,5 +20,3 @@ def auto_correct(sentence):
 
     return sentence
 
-#print(auto_correct("sned email"))
-#print(auto_correct("amazon least price for external hard drive  2 terabyte"))

@@ -278,8 +278,3 @@ def sort_products(query, _sort=(), no=5):  # _sort = [1,1]    [price, rate]
 
     except Exception as e:
         return f'Error in amazon sort_product: {e}'
-
-# print(BinarySearch([10,20,30,40,50], 20))
-# s = search_amazon("external hard drive 2tb")
-# print(s)
-# print(selector("amazon least price for external hard drive 2tb"))
