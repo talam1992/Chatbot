@@ -76,7 +76,7 @@ def man_tfl():
                         </tr>\
                         "
     func = ["tfl tube service report",
-            "tfl journey duration from <b>se1 5hp</b> to <b>se18 3px</b>",
+            "tfl journey duration from <b>E6 5JP</b> to <b>E20 1EJ</b>",
             "tfl live arrivals for <b>Bus No.</b> at <b>Bus Stop Road</b>",
             "tfl live arrivals for <b>line</b> at <b>station</b>"]
     for i in func:
