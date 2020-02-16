@@ -30,7 +30,7 @@ def check(email):
 def send_email(subject, msg, _send_email):
 
     try:
-        server = smtplib.SMTP_SSL('smtp.smtp.office365.com')
+        server = smtplib.SMTP_SSL('smtp.office365.com')
         server.ehlo()
         server.login(config.email_address, config.password)
         _message = 'Subject: {}\n\n{}\n\n Sent By Parrotlet \n\n'.format(subject, msg)
