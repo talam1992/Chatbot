@@ -11,6 +11,10 @@ def selector(message):
         ctypes.windll.user32.LockWorkStation()
     elif message == 'windows sign out': #Logoff
         ctypes.windll.user32.ExitWindowsEx(0)
+    elif message ==  'windows shutdown': #Shutdown
+        os.system("shutdown /s /t 1")
+    elif message == "windows restart": #Restart
+        os.system("shutdown /r /t 1")
     else:
         return 'windows is currently offline'
 
