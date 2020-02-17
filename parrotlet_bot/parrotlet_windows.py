@@ -7,8 +7,14 @@ def selector(message):
     if message == 'windows sort download folder':
         sort_downloads()
         return {'display': 'download files have been sorted', 'say': 'download files have been sorted'}
-    elif message == 'windows lock screen':
+    elif message == 'windows lock screen': #Lock Screen
         ctypes.windll.user32.LockWorkStation()
+    elif message == 'windows sign out': #Logoff
+        ctypes.windll.user32.ExitWindowsEx(0)
+    elif message == 'windows reboot': #Reboot
+        ctypes.windll.user32.ExitWindowsEx(0x00000002)
+    elif message == 'windows poweroff': #Poweroff
+        ctypes.windll.user32.ExitWindowsEx(0x00000008)
     else:
         return 'windows is currently offline'
 
