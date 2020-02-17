@@ -398,10 +398,31 @@ def man_google_image():
     reply = {'display': display, 'say': say}
     return reply
 
+def man_windows():
+    display = "<table id='t01'>\
+                            <tr>\
+                                <th>Windows Usage</th>\
+                                <th>Description</th>\
+                            </tr>\
+                            "
+    func = ["windows lock screen",
+            "windows sort download folder",
+            ]
+    des = ["Lock your windows screen", "sort the files in the download folder by file type"]
+    for i in func:
+        display += f"<tr>\
+                            <td onclick='man_complete("+f'"{i}"'+f")'>{i}</td>\
+                            <td onclick='man_complete(" + f'"{i}"' + f")'>{des[func.index(i)]}</td>\
+                        </tr>"
+    display += "</table>"
+    say = "Find below How to use the Rihanna windows functionality"
+    reply = {'display': display, 'say': say}
+    return reply
+
 man_dict = {'man help': man_help, 'man maths': man_maths, 'man twitter': man_twitter, 'man tfl': man_tfl,
             'man news': man_news, 'man email': man_email, 'man skype': man_skype, 'man facebook': man_facebook,
             'man football': man_football, 'man time': man_time, 'man date': man_date, 'man weather': man_weather,
             'man youtube': man_youtube, 'man google': man_google, 'man wikipedia': man_wiki, 'man wiki': man_wiki,
             'man amazon': man_amazon, 'man dictionary': man_dictionary, 'man word cloud': man_word_cloud,
-            'man job search': man_job_search, 'man_google_image': man_google_image}
+            'man job search': man_job_search, 'man google image': man_google_image, 'man windows': man_windows}
 
