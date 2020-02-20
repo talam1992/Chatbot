@@ -8,8 +8,7 @@ import pyttsx3
 from selenium import webdriver
 from parrotlet_bot import parrotlet_football, parrotlet_speak, parrotlet_tweet, parrotlet_news, parrotlet_skype, parrotlet_one_char, \
     parrotlet_time, parrotlet_maths as calc, parrotlet_email, parrotlet_tfl, parrotlet_spell, parrotlet_facebook, parrotlet_amazon, \
-    parrotlet_dict, parrotlet_wc, \
-    parrotlet_man, parrotlet_job, parrotlet_youtube, parrotlet_google_image, parrotlet_windows
+    parrotlet_dict, parrotlet_wc,parrotlet_man, parrotlet_job, parrotlet_youtube, parrotlet_google_image, parrotlet_windows, parrotlet_nhs
 import config
 import random as r
 
@@ -188,6 +187,9 @@ def parrotlet(message):
 
     elif message[:len('windows')] == 'windows':
         return parrotlet_windows.selector(message)
+
+    elif message[:len('nhs review on')] == 'nhs review on':
+        return parrotlet_nhs.selector(message)
 
     elif message in break_words:
         reply = stop_words()

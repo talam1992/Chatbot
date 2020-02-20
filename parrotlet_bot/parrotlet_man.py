@@ -407,15 +407,36 @@ def man_windows():
                             "
     func = ["windows lock screen",
             "windows sort download folder",
+            "windows shutdown",
+            "windows restart",
+            "windows check duplicates"
             ]
-    des = ["Lock your windows screen", "sort the files in the download folder by file type"]
+    des = ["Lock your windows screen", "sort the files in the download folder by file type", "Shutdown your system", "Restart your system"]
     for i in func:
         display += f"<tr>\
                             <td onclick='man_complete("+f'"{i}"'+f")'>{i}</td>\
                             <td onclick='man_complete(" + f'"{i}"' + f")'>{des[func.index(i)]}</td>\
                         </tr>"
     display += "</table>"
-    say = "Find below How to use the Rihanna windows functionality"
+    say = "Find below How to use the Parrotlet windows functionality"
+    reply = {'display': display, 'say': say}
+    return reply
+
+def man_nhs():
+    display = "<table id='t01'>\
+                                <tr>\
+                                    <th>NHS Usage</th>\
+                                    <th>Description</th>\
+                                </tr>\
+                                "
+    func = ["nhs review on <b>Symptons</b>"]
+    for i in func:
+        j = i.replace('<b>', '[').replace('</b>', ']')
+        display += f"<tr>\
+                            <td onclick='man_complete("+f'"{j}"'+f")'>{i}</td>\
+                        </tr>"
+    display += "</table>"
+    say = "Find below How to use the NHS review features"
     reply = {'display': display, 'say': say}
     return reply
 
@@ -424,5 +445,5 @@ man_dict = {'man help': man_help, 'man maths': man_maths, 'man twitter': man_twi
             'man football': man_football, 'man time': man_time, 'man date': man_date, 'man weather': man_weather,
             'man youtube': man_youtube, 'man google': man_google, 'man wikipedia': man_wiki, 'man wiki': man_wiki,
             'man amazon': man_amazon, 'man dictionary': man_dictionary, 'man word cloud': man_word_cloud,
-            'man job search': man_job_search, 'man google image': man_google_image, 'man windows': man_windows}
+            'man job search': man_job_search, 'man google image': man_google_image, 'man windows': man_windows, 'man nhs': man_nhs}
 
