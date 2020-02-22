@@ -424,19 +424,26 @@ def man_windows():
 
 def man_nhs():
     display = "<table id='t01'>\
-                                <tr>\
-                                    <th>NHS Usage</th>\
-                                    <th>Description</th>\
-                                </tr>\
-                                "
-    func = ["nhs review on <b>Symptons</b>"]
+                            <tr>\
+                                <th>NHS Usage</th>\
+                            </tr>\
+                            "
+    func = ['nhs review on <b>condition</b>',
+            'nhs prevention for <b>condition</b>',
+            'nhs overview for <b>condition</b>',
+            'nhs symptoms for <b>condition</b>',
+            'nhs treatments overview for <b>condition</b>',
+            'nhs self care advice for <b>condition</b>',
+            'nhs other treatments for <b>condition</b>',
+            'nhs causes for <b>condition</b>',
+            'nhs health news']
     for i in func:
         j = i.replace('<b>', '[').replace('</b>', ']')
         display += f"<tr>\
-                            <td onclick='man_complete("+f'"{j}"'+f")'>{i}</td>\
+                            <td onclick='man_complete(" + f'"{j}"' + f")'>{i}</td>\
                         </tr>"
     display += "</table>"
-    say = "Find below How to use the NHS review features"
+    say = "Find below How to use the NHS feature"
     reply = {'display': display, 'say': say}
     return reply
 
