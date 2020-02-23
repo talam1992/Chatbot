@@ -188,8 +188,8 @@ def parrotlet(message):
     elif message[:len('windows')] == 'windows':
         return parrotlet_windows.selector(message)
 
-    elif message[:len('nhs review on')] == 'nhs review on':
-        return parrotlet_nhs.selector(message)
+    elif message[:len ('nhs')] == 'nhs':
+        return parrotlet_nhs.selector (message)
 
     elif message in break_words:
         reply = stop_words()

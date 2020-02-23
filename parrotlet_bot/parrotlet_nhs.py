@@ -37,6 +37,9 @@ def selector(message):
     elif message[:len('nhs medicine information on')] == 'nhs medicine information on':
         msg = message[len('nhs medicine information on') + 1:].strip()
         return HealthData(search=msg, branch='medicines').nhs_medicine()
+    elif message[:len ('nhs search')] == 'nhs search':
+        msg = message[len ('nhs search') + 1:].strip ()
+        return HealthData (search=msg, branch="search").nhs_search ()
     else:
         return "NHS server cannot process that request at the moment"
 
@@ -159,4 +162,19 @@ class HealthData:
         reply = {'display': display.replace(';', ''),
                  'say': f'Find the displayed information on {self.search}. This information is brought to you by NHS'}
         # print(reply)
+        return reply
+
+    def nhs_search(self):
+        pageURL = f"{self.baseUrl}/?query={self.search}"
+        request = urllib.request.Request(pageURL, headers=self.request_headers)
+        contents = json.loads(urllib.request.urlopen(request).read())
+        #print(contents)
+        title = f"NHS Search Results For {self.search.capitalize()}"
+        display = f"<h2><font color='blue'>{title}</font></h2>"
+        for result in contents['results']:
+            if (result['id'] != '1') and (self.search in f"{result['title']} {result['summary']}"):
+                display += f"<h4><a href={result['url']} target='_blank'>{result['title']}</a></h4>"
+                display += f"{result['summary'].replace(';', '')}"
+                #print(result['id'])
+        reply = {'display': display, 'say': title}
         return reply
