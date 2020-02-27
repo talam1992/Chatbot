@@ -138,12 +138,7 @@ def parrotlet(message):
     if email['run'] == 0:
         if message.lower()[:3] == 'tfl':
             message = format_string(message).lower().strip()
-        elif message.lower()[:12] == 'show picture':
-            return parrotlet_skype.show_picture(message[13:].strip())
-        elif message[:len('birthday for')] == 'birthday for':
-            return parrotlet_skype.birthday(message[len('birthday for') + 1:].strip())
-        elif message.lower()[:5] == 'skype':
-            return parrotlet_skype._skype(format_string(message[6:]).lower().strip())
+            return parrotlet_skype.selector (format_string (message[6:]).lower ().strip ())
         elif message.lower()[:len('man')] == 'man':
             return parrotlet_man.selector(format_string(message).lower().strip())
         elif message.lower()[:len('amazon')] == 'amazon':
