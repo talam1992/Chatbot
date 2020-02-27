@@ -142,8 +142,8 @@ def man_skype():
                         </tr>\
                         "
     func = ["skype chat <b>friend_name</b> <b>message</b>",
-            "show picture <b>friend_name</b>",
-            "birthday for <b>friend_name</b>",
+            "skype show picture <b>friend_name</b>",
+            "skype birthday for <b>friend_name</b>",
             "skype get last message to <b>friend_name</b>"]
     for i in func:
         j = i.replace('<b>', '[').replace('</b>', ']')
