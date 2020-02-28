@@ -449,10 +449,31 @@ def man_nhs():
     reply = {'display': display, 'say': say}
     return reply
 
+def man_sound_cloud():
+    display = "<table id='t01'>\
+                            <tr>\
+                                <th>Sound cloud Usage</th>\
+                                <th>Description</th>\
+                            </tr>\
+                            "
+
+    func = {'sound cloud play <b>song</b>': 'plays sound from sound cloud',
+            }
+    for i in func:
+        j = i.replace('<b>', '[').replace('</b>', ']')
+        display += f"<tr>\
+                             <td onclick='man_complete(" + f'"{j}"' + f")'>{i}</td>\
+                             <td onclick='man_complete(" + f'"{j}"' + f")'>{func[i]}</td>\
+                         </tr>"
+    display += "</table>"
+    say = "Find below How to use the sound cloud functionality"
+    reply = {'display': display, 'say': say}
+    return reply
+
 man_dict = {'man help': man_help, 'man maths': man_maths, 'man twitter': man_twitter, 'man tfl': man_tfl,
             'man news': man_news, 'man email': man_email, 'man skype': man_skype, 'man facebook': man_facebook,
             'man football': man_football, 'man time': man_time, 'man date': man_date, 'man weather': man_weather,
             'man youtube': man_youtube, 'man google': man_google, 'man wikipedia': man_wiki, 'man wiki': man_wiki,
             'man amazon': man_amazon, 'man dictionary': man_dictionary, 'man word cloud': man_word_cloud,
-            'man job search': man_job_search, 'man google image': man_google_image, 'man windows': man_windows, 'man nhs': man_nhs}
-
+            'man job search': man_job_search, 'man google image': man_google_image, 'man windows': man_windows,
+            'man nhs': man_nhs, 'man sound cloud': man_sound_cloud}
